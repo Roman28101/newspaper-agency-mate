@@ -1,3 +1,4 @@
+from crispy_forms.helper import FormHelper
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
@@ -12,4 +13,14 @@ class RedactorCreationForm(UserCreationForm):
             "first_name",
             "last_name",
         )
+
+
+class RedactorDataUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = Redactor
+        fields = ["first_name", "last_name", "years_of_experience", "img"]
+
+
+
 
