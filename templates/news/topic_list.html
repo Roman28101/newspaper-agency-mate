@@ -1,10 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %} Topics {% endblock %}
+
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+
+  <div class="page-header min-vh-80" style="background-image: url('{{ ASSETS_ROOT }}/img/bg1.jpg')">
+    <span class="mask bg-gradient-dark opacity-6"></span>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div class="text-center">
+            <h1 class="text-white">All topics</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6 ">
+  <div class="d-block">
+      <a href="{% url 'news:topic-create' %}" class="btn btn-secondary link-to-page float-end" title="Add new topic">
+        +
+      </a>
+    </div>
+    <div class="container">
+      <div class="section text-center">
+        {% if topic_list %}
+        {% for topic in topic_list %}
+          <div class="block d-flex flex-column">
+            <hr>
+            <h3 class="title"># {{ topic.name.lower }}</h3>
+          <div class="list">
+            <a class="btn btn-outline-secondary" href="{% url 'news:topic-update' pk=topic.id %}">
+              Update
+            </a>
+            <a class="btn btn-outline-primary" href="{% url 'news:topic-delete' pk=topic.id %}">
+              Delete
+            </a>
+            <hr>
+          </div>
+          </div>
+
+
+        {% endfor %}
+        {% else %}
+        <h3 class="title"><i>There is no topics yet</i></h3>
+      {% endif %}
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

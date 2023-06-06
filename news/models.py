@@ -1,3 +1,4 @@
+from PIL import Image
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MaxValueValidator, \
     MinValueValidator
@@ -16,6 +17,9 @@ class Topic(models.Model):
 
 
 class Redactor(AbstractUser):
+    img = models.ImageField("Redactor's photo",
+                            default="default.png",
+                            upload_to="user_images")
     years_of_experience = models.IntegerField(
         default=0,
         validators=[
@@ -35,6 +39,14 @@ class Redactor(AbstractUser):
 
     def get_absolute_url(self):
         return reverse("news:redactor-detail", kwargs={"pk": self.pk})
+
+    def save(self, *args, **kwargs):
+        super().save()
+        image = Image.open(self.img.path)
+        if image.height > 256 or image.width > 256:
+            resize = (256, 256)
+            image.thumbnail(resize)
+            image.save(self.img.path)
 
 
 class Newspaper(models.Model):

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% block title %} {{ topic.name }} {% endblock %}
+
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+
+  <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6 mt-10">
+    <div class="container mt-10">
+      <div>
+          <div class="card-body m-2 max-width-400">
+            <h1>{{ object|yesno:"Update,Create" }} topic</h1>
+            <form action="" method="post" novalidate>
+            {% csrf_token %}
+            {{ form|crispy }}
+
+            <input type="submit" value="Submit" class="btn btn-secondary">
+              </form>
+          </div>
+      </div>
+
+  </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

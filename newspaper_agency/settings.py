@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -67,6 +67,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "news.context_processors.cfg_assets_root",
             ],
         },
     },
@@ -78,6 +79,8 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 WSGI_APPLICATION = "newspaper_agency.wsgi.application"
+
+ASSETS_ROOT = "/static/assets"
 
 
 # Database
@@ -112,6 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTH_USER_MODEL = "news.Redactor"
 
 LOGIN_REDIRECT_URL = "/"
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -136,3 +140,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+MEDIA_URL = "/pictures/"
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "pictures")
