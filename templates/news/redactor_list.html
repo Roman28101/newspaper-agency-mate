@@ -22,6 +22,9 @@
     </div>
   </div>
   <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
+    {% block searching %}
+      {% include "includes/searching.html" %}
+    {% endblock %}
     <div class="d-block">
       <a href="{% url 'news:redactor-register' %}" class="btn btn-secondary link-to-page float-end" title="Add new redactor">
         +

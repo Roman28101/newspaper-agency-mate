@@ -22,6 +22,9 @@
     </div>
   </div>
   <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
+  {% block searching %}
+    {% include "includes/searching.html" %}
+  {% endblock %}
   <div class="d-block">
       <a href="{% url 'news:newspaper-create' %}" class="btn btn-secondary link-to-page float-end" title="Add newspaper">
         +
@@ -33,7 +36,7 @@
         {%for newspaper in newspaper_list%}
           <div class="alert alert-light m-2 text-lg-center">
             <h3><a href="{% url 'news:newspaper-detail' pk=newspaper.id %}">{{newspaper.title}}</a></h3>
-            <p>{{ newspaper.content }}</p>
+            <p>{{ newspaper.content|striptags|truncatechars:400 }}</p>
 
             <div class="row">
               <div class="mt-2">

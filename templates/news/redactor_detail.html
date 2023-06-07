@@ -40,7 +40,7 @@
             {%endif%}
               <p class="text-2xl"><b>Years of experience:</b> <i>{{redactor.years_of_experience}}</i></p>
             <hr>
-            <p class="text-2xl"><b>Published newspapers:</b>
+            <p class="text-2xl"><b>Published newspaper{{ redactor.newspapers.count|pluralize }}:</b>
               <i>
                 {% for newspaper in redactor.newspapers.all %}
                 <p class="text-2xl"><a href="{% url 'news:newspaper-detail' pk=newspaper.id %}">{{newspaper.title}}</a></p>
@@ -53,13 +53,6 @@
           </div>
         </div>
       {%csrf_token%}
-      {{updateUserForm.as_p}}
-      {% for field in profileForm %}
-        <div class="form-group">
-            {{field.label_tag}}
-            <p>{{field}}</p>
-        </div>
-        {% endfor %}
       <a class="btn btn-outline-secondary" href="{% url 'news:redactor-update' pk=redactor.id %}">
         Update
       </a>
