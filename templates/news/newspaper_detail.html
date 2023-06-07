@@ -44,6 +44,12 @@
           <p>No publishers yet</p>
         {% endfor %}
       </ul>
+      <a class="btn btn-outline-secondary" href="{% url 'news:newspaper-update' pk=newspaper.id %}">
+        Update
+      </a>
+      <a class="btn btn-outline-primary" href="{% url 'news:newspaper-delete' pk=newspaper.id %}">
+        Delete
+      </a>
       </div>
     </div>
   </div>

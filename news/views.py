@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from news.forms import RedactorCreationForm, \
-    RedactorDataUpdateForm
+    RedactorDataUpdateForm, TopicSearchForm, NewspaperForm
 from news.models import Redactor, Newspaper, Topic
 
 
@@ -37,6 +37,23 @@ class NewspaperDetailView(LoginRequiredMixin, generic.DetailView):
     model = Newspaper
 
 
+
+class NewspaperCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Newspaper
+    form_class = NewspaperForm
+    success_url = reverse_lazy("news:newspaper-list")
+
+
+class NewspaperUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Newspaper
+    form_class = NewspaperForm
+    success_url = reverse_lazy("news:newspaper-list")
+
+
+class NewspaperDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Newspaper
+    success_url = reverse_lazy("news:newspaper-list")
+
 class RedactorListView(LoginRequiredMixin, generic.ListView):
     model = Redactor
     paginate_by = 5
@@ -62,6 +79,24 @@ class RedactorDeleteView(LoginRequiredMixin, generic.DeleteView):
 class TopicListView(LoginRequiredMixin, generic.ListView):
     model = Topic
     paginate_by = 5
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(TopicListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
+        context["search_form"] = TopicSearchForm(initial={
+            "name": name
+        })
+        return context
+
+    def get_queryset(self):
+        queryset = Topic.objects.all()
+        form = TopicSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return queryset.filter(
+                name__icontains=form.cleaned_data["name"]
+            )
+        return queryset
 
 
 class TopicCreateView(LoginRequiredMixin, generic.CreateView):
