@@ -32,18 +32,24 @@ class ModelsTest(TestCase):
         self.assertEqual(str(manufacturer), "Cars")
 
     def test_newspaper_str(self):
-        topic = Topic.objects.create(
-            name="Cars"
+        topic = (
+            Topic.objects.create(name="Crime"),
+            Topic.objects.create(name="Sport")
         )
-        publishers = get_user_model().objects.create_user(
-            username="user1",
-            password="user_password123456",
-            years_of_experience=1
+        publishers = (
+            get_user_model().objects.create_user(
+                username="user1",
+                password="user_password123456",
+                years_of_experience=1),
+            get_user_model().objects.create_user(
+                username="user2",
+                password="anotheruser_password123456",
+                years_of_experience=4)
         )
         newspaper = Newspaper.objects.create(
             title="New newspaper",
             content="Some simple text",
-            topic=topic,
-            publishers=publishers
         )
+        newspaper.topic.set(topic)
+        newspaper.publishers.set(publishers)
         self.assertEqual(str(newspaper), "New newspaper")
