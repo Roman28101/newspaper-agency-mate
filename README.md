@@ -1,1 +1,1 @@
-# newspaper-agency-mate
+Portfolio project of "Newspaper agency". With 3 models (Topic, Newspaper, Redactor). Current web-site has simple create, read, update, delete functions. Design powered by bootstrap and Django material kit.
