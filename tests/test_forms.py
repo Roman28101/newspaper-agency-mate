@@ -27,5 +27,3 @@ class FormsTests(TestCase):
         years_of_experience = {"years_of_experience": -1}
         form = RedactorDataUpdateForm(years_of_experience)
         self.assertFalse(form.is_valid())
-
-

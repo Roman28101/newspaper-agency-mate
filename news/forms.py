@@ -31,6 +31,7 @@ class TopicSearchForm(forms.Form):
         widget=forms.TextInput(attrs={"placeholder": "Search by name..."})
     )
 
+
 class NewspaperForm(forms.ModelForm):
     publishers = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),

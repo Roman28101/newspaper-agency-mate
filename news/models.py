@@ -28,14 +28,12 @@ class Redactor(AbstractUser):
         ]
     )
 
-
     class Meta:
         verbose_name = "redactor"
         verbose_name_plural = "redactors"
 
     def __str__(self):
         return f"{self.username} ({self.first_name} {self.last_name})"
-
 
     def get_absolute_url(self):
         return reverse("news:redactor-detail", kwargs={"pk": self.pk})
@@ -63,5 +61,3 @@ class Newspaper(models.Model):
 
     def __str__(self):
         return self.title
-
-
