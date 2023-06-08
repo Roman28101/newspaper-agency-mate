@@ -1,10 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import (
-    render,
-    get_object_or_404,
-    redirect
-)
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -14,8 +10,7 @@ from news.forms import (
     RedactorSearchForm,
     NewspaperForm,
     NewspaperSearchForm,
-    TopicSearchForm
-
+    TopicSearchForm,
 )
 from news.models import Redactor, Newspaper, Topic
 
@@ -47,9 +42,7 @@ class NewspaperListView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(NewspaperListView, self).get_context_data(**kwargs)
         title = self.request.GET.get("title", "")
-        context["search_form"] = NewspaperSearchForm(initial={
-            "title": title
-        })
+        context["search_form"] = NewspaperSearchForm(initial={"title": title})
         return context
 
     def get_queryset(self):
@@ -57,9 +50,7 @@ class NewspaperListView(LoginRequiredMixin, generic.ListView):
         form = NewspaperSearchForm(self.request.GET)
 
         if form.is_valid():
-            return queryset.filter(
-                title__icontains=form.cleaned_data["title"]
-            )
+            return queryset.filter(title__icontains=form.cleaned_data["title"])
         return queryset
 
 
@@ -105,9 +96,7 @@ class RedactorListView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(RedactorListView, self).get_context_data(**kwargs)
         username = self.request.GET.get("username", "")
-        context["search_form"] = RedactorSearchForm(initial={
-            "username": username
-        })
+        context["search_form"] = RedactorSearchForm(initial={"username": username})
         return context
 
     def get_queryset(self):
@@ -115,9 +104,7 @@ class RedactorListView(LoginRequiredMixin, generic.ListView):
         form = RedactorSearchForm(self.request.GET)
 
         if form.is_valid():
-            return queryset.filter(
-                username__icontains=form.cleaned_data["username"]
-            )
+            return queryset.filter(username__icontains=form.cleaned_data["username"])
         return queryset
 
 
@@ -149,9 +136,7 @@ class TopicListView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TopicListView, self).get_context_data(**kwargs)
         name = self.request.GET.get("name", "")
-        context["search_form"] = TopicSearchForm(initial={
-            "name": name
-        })
+        context["search_form"] = TopicSearchForm(initial={"name": name})
         return context
 
     def get_queryset(self):
@@ -159,9 +144,7 @@ class TopicListView(LoginRequiredMixin, generic.ListView):
         form = TopicSearchForm(self.request.GET)
 
         if form.is_valid():
-            return queryset.filter(
-                name__icontains=form.cleaned_data["name"]
-            )
+            return queryset.filter(name__icontains=form.cleaned_data["name"])
         return queryset
 
 

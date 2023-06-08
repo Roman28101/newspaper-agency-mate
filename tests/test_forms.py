@@ -1,7 +1,6 @@
 from django.test import TestCase
 
-from news.forms import RedactorCreationForm, \
-    RedactorDataUpdateForm
+from news.forms import RedactorCreationForm, RedactorDataUpdateForm
 
 
 class FormsTests(TestCase):
@@ -12,7 +11,7 @@ class FormsTests(TestCase):
             "password2": "test12345",
             "first_name": "Tony",
             "last_name": "Stark",
-            "years_of_experience": 5
+            "years_of_experience": 5,
         }
         form = RedactorCreationForm(data=redactor)
         self.assertTrue(form.is_valid())

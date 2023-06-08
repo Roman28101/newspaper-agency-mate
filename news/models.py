@@ -1,7 +1,6 @@
 from PIL import Image
 from django.contrib.auth.models import AbstractUser
-from django.core.validators import MaxValueValidator, \
-    MinValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.urls import reverse
 
@@ -17,15 +16,11 @@ class Topic(models.Model):
 
 
 class Redactor(AbstractUser):
-    img = models.ImageField("Redactor's photo",
-                            default="default.png",
-                            upload_to="user_images")
+    img = models.ImageField(
+        "Redactor's photo", default="default.png", upload_to="user_images"
+    )
     years_of_experience = models.IntegerField(
-        default=0,
-        validators=[
-            MaxValueValidator(100),
-            MinValueValidator(0)
-        ]
+        default=0, validators=[MaxValueValidator(100), MinValueValidator(0)]
     )
 
     class Meta:

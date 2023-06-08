@@ -14,14 +14,7 @@ class RedactorAdmin(UserAdmin):
         (
             (
                 "Additional info",
-                {
-                    "fields": (
-                        "first_name",
-                        "last_name",
-                        "years_of_experience",
-                        "img"
-                    )
-                },
+                {"fields": ("first_name", "last_name", "years_of_experience", "img")},
             ),
         )
     )

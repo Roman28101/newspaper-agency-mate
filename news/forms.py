@@ -1,4 +1,3 @@
-from crispy_forms.helper import FormHelper
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
@@ -17,7 +16,6 @@ class RedactorCreationForm(UserCreationForm):
 
 
 class RedactorDataUpdateForm(forms.ModelForm):
-
     class Meta:
         model = Redactor
         fields = ["first_name", "last_name", "years_of_experience", "img"]
@@ -28,7 +26,7 @@ class TopicSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by name..."})
+        widget=forms.TextInput(attrs={"placeholder": "Search by name..."}),
     )
 
 
@@ -52,7 +50,7 @@ class NewspaperSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by title..."})
+        widget=forms.TextInput(attrs={"placeholder": "Search by title..."}),
     )
 
 
@@ -61,5 +59,5 @@ class RedactorSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by username..."})
+        widget=forms.TextInput(attrs={"placeholder": "Search by username..."}),
     )

@@ -4,20 +4,27 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('news', '0001_initial'),
+        ("news", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='redactor',
-            name='img',
-            field=models.ImageField(default='default.png', upload_to='user_images', verbose_name="Redactor's photo"),
+            model_name="redactor",
+            name="img",
+            field=models.ImageField(
+                default="default.png",
+                upload_to="user_images",
+                verbose_name="Redactor's photo",
+            ),
         ),
         migrations.AlterField(
-            model_name='redactor',
-            name='is_active',
-            field=models.BooleanField(default=True, help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', verbose_name='active'),
+            model_name="redactor",
+            name="is_active",
+            field=models.BooleanField(
+                default=True,
+                help_text="Designates whether this user should be treated as active. Unselect this instead of deleting accounts.",
+                verbose_name="active",
+            ),
         ),
     ]
