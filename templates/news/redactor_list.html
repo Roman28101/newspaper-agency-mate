@@ -34,7 +34,7 @@
       <div class="section text-center">
         {% if redactor_list %}
         {% for redactor in redactor_list %}
-          <h3 class="title"><a href="{% url 'news:redactor-detail' pk=redactor.id %}">{{ redactor.first_name }} {{ redactor.last_name }}</a></h3>
+          <h3 class="title"><a href="{% url 'news:redactor-detail' pk=redactor.id %}">{{ redactor.first_name }} {{ redactor.last_name }}({{ redactor.username }})</a></h3>
         {% endfor %}
         {% else %}
         <h3 class="title"><i>There is no redactors yet</i></h3>
