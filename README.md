@@ -31,7 +31,6 @@ Web-site will provide you:
 
 
 
-Copy-paste as many of these as you need.
 
 ## Links
 
@@ -40,3 +39,12 @@ Links to project on all resources and what was mainly used:
 - Project homepage: ###
 - Repository: https://github.com/Roman28101/newspaper-agency-mate
 - Django material kit: https://github.com/app-generator/django-material-kit/tree/69b99af46b51b388c8ca230bbdd2f4b6ee3f0161
+
+
+## Test account
+
+You can use this account for testing all the features
+```shell
+username: test_user
+password: user_1234
+```
