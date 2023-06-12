@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% block title %} {{ redactor.username }} {% endblock %}
+
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+
+  <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6 mt-10">
+    <div class="container mt-10">
+      <div>
+          <div class="card-body m-2">
+            <h1>Delete redactor?</h1>
+            <form action="" method="post">
+              {% csrf_token %}
+              <input type="submit" value="Yes" class="btn btn-primary">
+              <a class="btn btn-success" href="{% url 'news:redactor-detail' pk=redactor.id %}">
+                Cancel
+              </a>
+            </form>
+          </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

@@ -1,0 +1,7 @@
+{% load crispy_forms_filters %}
+<div class="container d-flex">
+  <form action="" method="get" class="form-group">
+    {{ search_form|crispy }}
+    <span><input type="submit" value="🔎" class="btn btn-secondary"></span>
+  </form>
+</div>

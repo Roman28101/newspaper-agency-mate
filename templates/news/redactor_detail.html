@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %} {{ redactor.username }} {% endblock %}
+
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+
+  <div class="page-header min-vh-80" style="background-image: url('{{ ASSETS_ROOT }}/img/bg4.jpg')">
+    <span class="mask bg-gradient-dark opacity-6"></span>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div class="text-center">
+            <h1 class="text-white">Redactor info</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6 ">
+    <div class="container">
+      <form method="post" enctype="multipart/form-data" class="form-register mt-4">
+
+      <div class="d-flex text-muted pt-3 flex-column flex-lg-row">
+          <img class="bd-placeholder-img flex-shrink-0 m-2" width="256" height="256" src="{{redactor.img.url}}">
+          <div class="pb-3 mb-0 small lh-sm border-bottom">
+            <p><strong class="d-block text-gray-dark text-3xl">@{{redactor.username}}</strong></p>
+            {%if redactor.email%}
+              <p class="text-2xl"><b>Email:</b> <i>{{redactor.email}}</i></p>
+            {%endif%}
+            {%if redactor.first_name %}
+              <p class="text-2xl"><b>First name:</b> <i>{{redactor.first_name}}</i></p>
+            {%endif%}
+            {%if redactor.last_name %}
+              <p class="text-2xl"><b>Last name:</b> <i>{{redactor.last_name}}</i></p>
+            {%endif%}
+              <p class="text-2xl"><b>Years of experience:</b> <i>{{redactor.years_of_experience}}</i></p>
+            <hr>
+            <p class="text-2xl"><b>Published newspaper{{ redactor.newspapers.count|pluralize }}:</b>
+              <i>
+                {% for newspaper in redactor.newspapers.all %}
+                <p class="text-2xl"><a href="{% url 'news:newspaper-detail' pk=newspaper.id %}">{{newspaper.title}}</a></p>
+                {% empty %}
+                  no newspapers
+              </i>
+            </p>
+
+            {% endfor %}
+          </div>
+        </div>
+      {%csrf_token%}
+      <a class="btn btn-outline-secondary" href="{% url 'news:redactor-update' pk=redactor.id %}">
+        Update
+      </a>
+      <a class="btn btn-outline-primary" href="{% url 'news:redactor-delete' pk=redactor.id %}">
+        Delete
+      </a>
+    </form>
+    </div>
+
+  </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

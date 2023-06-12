@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %} {{ newspaper.title }} {% endblock %}
+
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+
+  <div class="page-header min-vh-80" style="background-image: url('{{ ASSETS_ROOT }}/img/bg4.jpg')">
+    <span class="mask bg-gradient-dark opacity-6"></span>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div class="text-center">
+            <h1 class="text-white">{{ newspaper.title }}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
+  {% if request.user in  newspaper.publishers.all %}
+    <form action="{% url 'news:update-publishers' pk=newspaper.pk %}" method="post" novalidate>
+      {% csrf_token %}
+      <input type="submit" value="Delete me from this newspaper" class="btn btn-danger link-to-page">
+    </form>
+    {% else%}
+    <form action="{% url 'news:update-publishers' pk=newspaper.pk%}" method="post" novalidate>
+      {% csrf_token %}
+      <input type="submit" value="Assign me to this newspaper" class="btn btn-success link-to-page">
+    </form>
+    {% endif %}
+    <div class="container">
+      <div class="d-flex justify-content-center">
+          <div class="alert alert-light m-2 text-lg-center">
+            <p>{{ newspaper.content }}</p>
+            </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="mt-2 text-sm-end">
+          {% for topic in newspaper.topic.all %}
+            <span class="text-muted ">#{{ topic.name.lower }}</span>
+          {% endfor %}
+        </div>
+      <div>
+      <h3>Publish by:</h3>
+      <ul>
+        {% for publisher in newspaper.publishers.all %}
+          <li>{{ publisher.first_name }} {{ publisher.last_name }}</li>
+        {% empty %}
+          <p>No publishers yet</p>
+        {% endfor %}
+      </ul>
+      <a class="btn btn-outline-secondary" href="{% url 'news:newspaper-update' pk=newspaper.id %}">
+        Update
+      </a>
+      <a class="btn btn-outline-primary" href="{% url 'news:newspaper-delete' pk=newspaper.id %}">
+        Delete
+      </a>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
