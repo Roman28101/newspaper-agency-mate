@@ -32,13 +32,16 @@ Web-site will provide you:
 
 
 
-## Links
+## Resources
 
-Links to project on all resources and what was mainly used:
-
-- Project homepage: https://newspaper-agency-mate.onrender.com
-- Repository: https://github.com/Roman28101/newspaper-agency-mate
+What additional resources I used for the project:
 - Django material kit: https://github.com/app-generator/django-material-kit/tree/69b99af46b51b388c8ca230bbdd2f4b6ee3f0161
+
+## Project links
+
+- Project page: https://newspaper-agency-mate.onrender.com
+- Repository: https://github.com/Roman28101/newspaper-agency-mate
+
 
 
 ## Test account
