@@ -1,6 +1,6 @@
 # Newspaper-agency-mate
 
-Portfolio project of "Newspaper agency". With 3 models (Topic, Newspaper, Redactor). Current web-site has simple create, read, update, delete functions.
+Project of "Newspaper agency". With 3 models (Topic, Newspaper, Redactor). Current web-site has simple create, read, update, delete functions.
 
 
 ## Installing
