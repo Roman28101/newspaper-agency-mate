@@ -39,7 +39,7 @@ What additional resources I used for the project:
 
 ## Project links
 
-- Project page: https://newspaper-agency-mate.onrender.com
+- Project page: https://newspaper-agency-npg3.onrender.com
 - Repository: https://github.com/Roman28101/newspaper-agency-mate
 
 
